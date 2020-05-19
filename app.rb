@@ -24,5 +24,7 @@ get "/" do
     puts "A high of #{day["temp"]["max"]} and #{day["weather"][0]["main"]}"
   end
   
+  puts "My name is Jeff"
+
   ### Get the news
 end
