@@ -21,6 +21,20 @@
     <title>News</title>
   </head>
   <body>
+    
+    <div class="container mt-5">
+      <h1>Weather</h1>
+      <h2>The current weather is:</h2>
+      <h3> <%= @current_forecast %> </h3>
+      <p> </p>
+      <h4>The extended forecast for the next 7 days is:</h4>
+      <h5>
+        <% for day in @forecast["daily"] %>
+          <p><%= "#{day["dt"]}" %> A high of <%= "#{day["temp"]["max"]}" %> and <%= "#{day["weather"][0]["description"]}" %>. </p>
+        <% end %>
+      </h5>
+
+    </div>
 
     <div class="container mt-5">
       <h1>News</h1>
