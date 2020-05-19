@@ -18,10 +18,12 @@ get "/" do
   # make the call
   @forecast = HTTParty.get(url).parsed_response.to_hash
 
-  puts "The weather at your requested location is #{@forecast["current"]["temp"]} degrees and #{@forecast["current"]["weather"][0]["main"]}"
+  puts "The weather at your requested location is #{@forecast["current"]["temp"]} degrees and #{@forecast["current"]["weather"][0]["description"]}"
   puts"Extended forecast:"
+  day_number = 1
     for day in @forecast["daily"]
-      puts "A high of #{day["temp"]["max"]} and #{day["weather"][0]["main"]}"
+      puts "On day #{day_number}, a high of #{day["temp"]["max"]} and #{day["weather"][0]["description"]}"
+      day_number = day_number + 1
     end
   
   puts "My name is Jeff!"
