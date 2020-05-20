@@ -25,7 +25,7 @@
 
   <!-- # Header with date and time (my local and source) -->
     <div class="container mt-5">
-      <h5><%= Time.at(@forecast["current"]["dt"]).getlocal('-05:00').strftime("%A,  %B %e, %Y") %></h5>
+      <h5 class="header"><%= Time.at(@forecast["current"]["dt"]).getlocal('-05:00').strftime("%A,  %B %e, %Y") %></h5>
       <p><%= Time.at(@current_time).getlocal('-05:00').strftime("%l:%M %p %Z") %></p>
       <p><%= Time.at(@current_time).strftime("%l:%M %p %Z") %></p>
       <hr class="my-4">
@@ -49,19 +49,19 @@
                   <th scope="col">Hour</th>
                   <th scope="col">Day</th>
                   <th scope="col"></th>
-                  <th scope="col">Temp.</th>
-                  <th scope="col">Feels Like.</th>
+                  <th style="text-align:center" scope="col">Temp.</th>
+                  <th style="text-align:center" scope="col">Feels Like.</th>
                   <th scope="col">Description</th>
                 </tr>
               </thead>
               <tbody>
                 <% for hourly in @forecast["hourly"][1, 12] %>
                   <tr>
-                    <td><%= Time.at(hourly["dt"]).getlocal('-05:00').strftime("%I %P")%></td>
+                    <td><%= Time.at(hourly["dt"]).getlocal('-05:00').strftime("%l %P")%></td>
                     <td><%= Time.at(hourly["dt"]).getlocal('-05:00').strftime("%a")%></td>
                     <td><img class="image-fluid" src="/images/<%= hourly["weather"][0]["icon"] %>.png"></td>
-                    <td><%= "#{hourly["temp"].round()}"%></td>
-                    <td><%= "#{hourly["feels_like"].round()}"%></td>
+                    <td style="text-align:center"><%= "#{hourly["temp"].round()}"%></td>
+                    <td style="text-align:center"><%= "#{hourly["feels_like"].round()}"%></td>
                     <td><%= "#{hourly["weather"][0]["description"]}" %></td>
                   </tr>
                 <% end %>
@@ -80,8 +80,8 @@
                   <th scope="col">Day</th>
                   <th scope="col">Date</th>
                   <th scope="col"></th>
-                  <th scope="col">Max. Temp.</th>
-                  <th scope="col">Min. Temp.</th>
+                  <th style="text-align:center" scope="col">Max. Temp.</th>
+                  <th style="text-align:center"scope="col">Min. Temp.</th>
                   <th scope="col">Description</th>
                 </tr>
               </thead>
@@ -89,10 +89,10 @@
                 <% for day in @forecast["daily"][1, 7] %>
                   <tr>
                     <td><%= Time.at(day["dt"]).strftime("%a")%></td>
-                    <td><%= Time.at(day["dt"]).strftime("%B %e")%></td>
+                    <td><%= Time.at(day["dt"]).strftime("%m/%d")%></td>
                     <td><img class="image-fluid" src="/images/<%= day["weather"][0]["icon"] %>.png"></td>
-                    <td><%= "#{day["temp"]["max"].round()}"%></td>
-                    <td><%= "#{day["temp"]["min"].round()}"%></td>
+                    <td style="text-align:center"><%= "#{day["temp"]["max"].round()}"%></td>
+                    <td style="text-align:center"><%= "#{day["temp"]["min"].round()}"%></td>
                     <td><%= "#{day["weather"][0]["description"]}" %></td>
                   </tr>
                 <% end %>

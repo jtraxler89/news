@@ -1,7 +1,3 @@
-.img.img-fluid {
-    size: 50px
-}
-
 th {
     color: black!important;
     font-family: 'Fira Sans', monospace;
@@ -10,6 +6,7 @@ th {
 tr {
     color: black!important;
     font-family: 'Fira Sans', monospace;
+        height: 74px;
 }
 
 td {
@@ -51,6 +48,10 @@ h5 {
     font-family: 'Fira Sans', monospace;
     font-weight: 700;
     margin-bottom: 10px;
+}
+
+h5.header {
+    color: blue!important;
 }
 
 h6 {
