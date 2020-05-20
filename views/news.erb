@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
@@ -24,20 +24,47 @@
     
     <div class="container mt-5">
       <h1>Weather</h1>
-      <h2>The current weather is:</h2>
-      <h3> <%= @current_forecast %> </h3>
+      <h2>The current weather is: <%= @current_forecast %></h2>
       <p> </p>
-      <h4>The extended forecast for the next 7 days is:</h4>
-      <h5>
-        <% for day in @forecast["daily"] %>
-          <p><%= "#{day["dt"]}" %> A high of <%= "#{day["temp"]["max"]}" %> and <%= "#{day["weather"][0]["description"]}" %>. </p>
-        <% end %>
-      </h5>
-
+      <h4>Extended Forecast</h4>
+      
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+            <th scope="col">Max. Temp.</th>
+            <th scope="col">Min. Temp.</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for day in @forecast["daily"] %>
+            <tr>
+              <td><%= Time.at(day["dt"]).strftime("%A")%></td>
+              <td><%= Time.at(day["dt"]).strftime("%B %e, %Y")%></td>
+              <td><img src="/images/<%= day["weather"][0]["icon"] %>.png"></td>
+              <td><%= "#{day["temp"]["max"].round()}"%></td>
+              <td><%= "#{day["temp"]["min"].round()}"%></td>
+              <td><%= "#{day["weather"][0]["description"]}" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      
     </div>
 
     <div class="container mt-5">
-      <h1>News</h1>
+      <h1>News - Top Headlines</h1>
+      <h6><%= "#{@news["totalResults"]}" %> total results</h6>
+      <h5>  
+        <% for headlines in @news["articles"] %>
+          <h5><a href= <%= "#{headlines["url"]}" %>><%= "#{headlines["title"]}" %></a></h5>
+          <p><%= "#{headlines["description"]}" %> - Author: <%= "#{headlines["author"]}" %></p>
+        <% end %>
+      </h5>
+
     </div>
 
     <!-- Optional JavaScript -->
