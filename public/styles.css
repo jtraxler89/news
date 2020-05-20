@@ -1,3 +1,7 @@
+.img.img-fluid {
+    size: 50px
+}
+
 th {
     color: black!important;
     font-family: 'Fira Sans', monospace;
