@@ -1,0 +1,62 @@
+th {
+    color: black!important;
+    font-family: 'Fira Sans', monospace;
+}
+
+tr {
+    color: black!important;
+    font-family: 'Fira Sans', monospace;
+}
+
+td {
+    color: black!important;
+    font-family: 'Fira Sans', monospace;
+}
+
+h1 {
+    color: blue!important;
+    font-family: 'Fira Sans', monospace;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: black!important;
+    font-family: 'Fira Sans', monospace;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: black!important;
+    font-family: 'Fira Sans', monospace;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+h4 {
+    color: black!important;
+    font-family: 'Fira Sans', monospace;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+h5 {
+    color: black!important;
+    font-family: 'Fira Sans', monospace;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+h6 {
+    color: black!important;
+    font-family: 'Fira Sans', monospace;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+p {
+    color: black!important;
+    font-family: 'Fira Sans', monospace;
+}

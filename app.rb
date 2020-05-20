@@ -20,7 +20,7 @@ get "/" do
 
   @current_forecast = "#{@forecast["current"]["temp"].round()} degrees and #{@forecast["current"]["weather"][0]["description"]}"
 
-  
+  @current_time = @forecast["current"]["dt"]
 
   ### Get the news
 

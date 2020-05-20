@@ -7,7 +7,7 @@
 
     <!-- Google Fonts -->
     <!-- Swap out "Roboto" for the font(s) you want to use -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900|Roboto&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
@@ -22,43 +22,89 @@
   </head>
   <body>
 
+
+  <!-- # Header with date and time (my local and source) -->
     <div class="container mt-5">
-    <h6><%= Time.now().strftime("%B %e, %Y") %></h6>
+      <h5><%= Time.at(@forecast["current"]["dt"]).getlocal('-05:00').strftime("%A,  %B %e, %Y") %></h5>
+      <p><%= Time.at(@current_time).getlocal('-05:00').strftime("%l:%M %p %Z") %></p>
+      <p><%= Time.at(@current_time).strftime("%l:%M %p %Z") %></p>
+      <hr class="my-4">
     </div>
+ 
+  <!-- # Current weather -->
     <div class="container mt-5">
       <h1>Weather</h1>
       <h2>The current weather is: <%= @current_forecast %></h2>
-      <p> </p>
-      <h4>Extended Forecast</h4>
-      
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Day</th>
-            <th scope="col">Date</th>
-            <th scope="col"></th>
-            <th scope="col">Max. Temp.</th>
-            <th scope="col">Min. Temp.</th>
-            <th scope="col">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% for day in @forecast["daily"] %>
-            <tr>
-              <td><%= Time.at(day["dt"]).strftime("%A")%></td>
-              <td><%= Time.at(day["dt"]).strftime("%B %e, %Y")%></td>
-              <td><img src="/images/<%= day["weather"][0]["icon"] %>.png"></td>
-              <td><%= "#{day["temp"]["max"].round()}"%></td>
-              <td><%= "#{day["temp"]["min"].round()}"%></td>
-              <td><%= "#{day["weather"][0]["description"]}" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      
+    </div>
+
+    <div class= "container">
+      <div class="row">
+        <div class="col-sm">
+        <!-- # Hourly forecast -->
+          <div class="container-responsive">
+            <h4>12-Hour Forecast</h4>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Hour</th>
+                  <th scope="col">Day</th>
+                  <th scope="col"></th>
+                  <th scope="col">Temp.</th>
+                  <th scope="col">Feels Like.</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for hourly in @forecast["hourly"][1, 12] %>
+                  <tr>
+                    <td><%= Time.at(hourly["dt"]).getlocal('-05:00').strftime("%I %P")%></td>
+                    <td><%= Time.at(hourly["dt"]).getlocal('-05:00').strftime("%a")%></td>
+                    <td><img src="/images/<%= hourly["weather"][0]["icon"] %>.png"></td>
+                    <td><%= "#{hourly["temp"].round()}"%></td>
+                    <td><%= "#{hourly["feels_like"].round()}"%></td>
+                    <td><%= "#{hourly["weather"][0]["description"]}" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>  
+          </div>
+        </div>
+     
+        <div class="col-sm">
+        <!-- # Extended forecast -->
+          <div class="container-responsive">
+            <h4>7-Day Extended Forecast</h4>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Day</th>
+                  <th scope="col">Date</th>
+                  <th scope="col"></th>
+                  <th scope="col">Max. Temp.</th>
+                  <th scope="col">Min. Temp.</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for day in @forecast["daily"][1, 7] %>
+                  <tr>
+                    <td><%= Time.at(day["dt"]).strftime("%a")%></td>
+                    <td><%= Time.at(day["dt"]).strftime("%B %e")%></td>
+                    <td><img src="/images/<%= day["weather"][0]["icon"] %>.png"></td>
+                    <td><%= "#{day["temp"]["max"].round()}"%></td>
+                    <td><%= "#{day["temp"]["min"].round()}"%></td>
+                    <td><%= "#{day["weather"][0]["description"]}" %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        <div>
+      </div>    
     </div>
 
     <div class="container mt-5">
+      <hr class="my-4">
       <h1>News - Top Headlines</h1>
       <h6><%= "#{@news["totalResults"]}" %> total results</h6>
       <h5>  
