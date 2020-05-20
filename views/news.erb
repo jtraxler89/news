@@ -39,7 +39,7 @@
 
     <div class= "container">
       <div class="row">
-        <div class="col-sm">
+        <div class="col-lg">
         <!-- # Hourly forecast -->
           <div class="container-responsive">
             <h4>12-Hour Forecast</h4>
@@ -59,7 +59,7 @@
                   <tr>
                     <td><%= Time.at(hourly["dt"]).getlocal('-05:00').strftime("%I %P")%></td>
                     <td><%= Time.at(hourly["dt"]).getlocal('-05:00').strftime("%a")%></td>
-                    <td><img src="/images/<%= hourly["weather"][0]["icon"] %>.png"></td>
+                    <td><img class="image-fluid" src="/images/<%= hourly["weather"][0]["icon"] %>.png"></td>
                     <td><%= "#{hourly["temp"].round()}"%></td>
                     <td><%= "#{hourly["feels_like"].round()}"%></td>
                     <td><%= "#{hourly["weather"][0]["description"]}" %></td>
@@ -70,7 +70,7 @@
           </div>
         </div>
      
-        <div class="col-sm">
+        <div class="col-lg">
         <!-- # Extended forecast -->
           <div class="container-responsive">
             <h4>7-Day Extended Forecast</h4>
@@ -90,7 +90,7 @@
                   <tr>
                     <td><%= Time.at(day["dt"]).strftime("%a")%></td>
                     <td><%= Time.at(day["dt"]).strftime("%B %e")%></td>
-                    <td><img src="/images/<%= day["weather"][0]["icon"] %>.png"></td>
+                    <td><img class="image-fluid" src="/images/<%= day["weather"][0]["icon"] %>.png"></td>
                     <td><%= "#{day["temp"]["max"].round()}"%></td>
                     <td><%= "#{day["temp"]["min"].round()}"%></td>
                     <td><%= "#{day["weather"][0]["description"]}" %></td>
@@ -103,7 +103,7 @@
       </div>    
     </div>
 
-    <div class="container mt-5">
+    <div class="container-fluid">
       <hr class="my-4">
       <h1>News - Top Headlines</h1>
       <h6><%= "#{@news["totalResults"]}" %> total results</h6>
@@ -113,8 +113,15 @@
           <p><%= "#{headlines["description"]}" %> - Author: <%= "#{headlines["author"]}" %></p>
         <% end %>
       </h5>
-
     </div>
+
+    <div class="container-fluid">
+      <hr class="my-4">
+      <h6>Weather provided by <a href="https://openweathermap.org/api/one-call-api">OpenWeather</a>.</h6>
+      <h6>News provided by <a href="https://newsapi.org/">NewsAPI</a>.</h6>
+    </div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
