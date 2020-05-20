@@ -21,7 +21,10 @@
     <title>News</title>
   </head>
   <body>
-    
+
+    <div class="container mt-5">
+    <h6><%= Time.now().strftime("%B %e, %Y") %></h6>
+    </div>
     <div class="container mt-5">
       <h1>Weather</h1>
       <h2>The current weather is: <%= @current_forecast %></h2>
