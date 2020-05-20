@@ -59,7 +59,7 @@
                   <tr>
                     <td><%= Time.at(hourly["dt"]).getlocal('-05:00').strftime("%l %P")%></td>
                     <td><%= Time.at(hourly["dt"]).getlocal('-05:00').strftime("%a")%></td>
-                    <td><img class="image-fluid" src="/images/<%= hourly["weather"][0]["icon"] %>.png"></td>
+                    <td><img class="img-fluid" src="/images/<%= hourly["weather"][0]["icon"] %>.png"></td>
                     <td style="text-align:center"><%= "#{hourly["temp"].round()}"%></td>
                     <td style="text-align:center"><%= "#{hourly["feels_like"].round()}"%></td>
                     <td><%= "#{hourly["weather"][0]["description"]}" %></td>
@@ -90,7 +90,7 @@
                   <tr>
                     <td><%= Time.at(day["dt"]).strftime("%a")%></td>
                     <td><%= Time.at(day["dt"]).strftime("%m/%d")%></td>
-                    <td><img class="image-fluid" src="/images/<%= day["weather"][0]["icon"] %>.png"></td>
+                    <td><img class="img-fluid" src="/images/<%= day["weather"][0]["icon"] %>.png"></td>
                     <td style="text-align:center"><%= "#{day["temp"]["max"].round()}"%></td>
                     <td style="text-align:center"><%= "#{day["temp"]["min"].round()}"%></td>
                     <td><%= "#{day["weather"][0]["description"]}" %></td>
